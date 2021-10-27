@@ -1,0 +1,17 @@
+<div class="inbox-container">
+  <div class="tool-box">
+    <button mat-button color="primary" (click)="openDialog()">
+      <i class="fa fa-plus"></i>&nbsp; New
+    </button>
+  </div>
+  <div class="messages">
+    <div *ngFor="let message of messages" class="message">
+      <div class="user-info">
+        <span class="sender">{{message.sender | titlecase}}</span> <span class="timestamp">{{message.timestamp | date }}</span>
+      </div>
+      <div>
+        <p class="content">{{message.message}}</p>
+      </div>
+    </div>
+  </div>
+</div>

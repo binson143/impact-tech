@@ -1,0 +1,11 @@
+{
+  "dashboard": {
+    "home": "Accueil",
+    "inbox": "Boîte de réception",
+    "profile": "Profil",
+    "logout": "Se déconnecter",
+    "lmsg": "Derniers messages",
+    "mpc": "Messages par contacts",
+    "fc": "Contacts fréquents"
+  }
+}

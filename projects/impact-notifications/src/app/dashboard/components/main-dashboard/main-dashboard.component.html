@@ -1,0 +1,34 @@
+<div class="main-overview">
+  <div class="overview-card">
+    <h4>{{'dashboard.lmsg'|translate}}</h4>
+    <div *ngIf="recentMessages.length>0">
+      <table id="recent-msgs">
+        <thead>
+          <tr>
+            <th>From</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let msg of recentMessages">
+            <td>{{msg.sender | titlecase}}</td>
+            <td>{{msg.message}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="overview-card">
+
+    <h4>{{'dashboard.mpc'|translate}}</h4>
+    <ngx-charts-bar-vertical [results]="messagesPerUser">
+    </ngx-charts-bar-vertical>
+  </div>
+  <div class="overview-card">
+
+    <h4>{{'dashboard.fc'|translate}}</h4>
+    <div *ngFor="let user of frequentUsers" class="user-info">
+      <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> &nbsp;<span> {{user | titlecase}}</span>
+    </div>
+  </div>
+</div>

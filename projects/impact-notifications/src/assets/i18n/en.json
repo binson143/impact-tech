@@ -1,0 +1,11 @@
+{
+  "dashboard": {
+    "home": "Home",
+    "inbox": "Inbox",
+    "profile": "Profile",
+    "logout": "Logout",
+    "lmsg": "Latest messages",
+    "mpc": "Messages per contacts",
+    "fc": "Frequent contacts"
+  }
+}

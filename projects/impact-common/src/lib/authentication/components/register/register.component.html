@@ -1,0 +1,11 @@
+<div class="form-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" id="register-form">
+    <formly-form [form]="registerForm" [fields]="formFields" [model]="registerModel"></formly-form>
+    <div fxLayout="row-reverse" flex>
+      <button type="submit" mat-raised-button color="primary" class="b-h-m" id="submit-btn"
+       [disabled]="registerForm.invalid"
+      >Submit</button> &nbsp;
+
+    </div>
+  </form>
+</div>

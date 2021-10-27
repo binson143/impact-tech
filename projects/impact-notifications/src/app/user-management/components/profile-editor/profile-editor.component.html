@@ -1,0 +1,20 @@
+<div class="form-container">
+  <form [formGroup]="profileForm">
+    <mat-form-field>
+      <mat-label>Username*</mat-label>
+      <input matInput placeholder="Username" formControlName="username" id="username" >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email*</mat-label>
+      <input matInput placeholder="Email" formControlName="email" id="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password*</mat-label>
+      <input matInput placeholder="Password" formControlName="password" id="password" type="password">
+    </mat-form-field>
+    <div class="action-panel">
+      <button mat-raised-button color="accent" *ngIf="!isEdit" type="button" (click)="onEdit()">Edit</button> &nbsp;
+      <button mat-raised-button color="primary" *ngIf="isEdit" type="button" (click)="onSubmit()" [disabled]="profileForm.invalid">Submit</button> &nbsp;
+    </div>
+  </form>
+</div>

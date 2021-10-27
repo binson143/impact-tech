@@ -1,0 +1,121 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr 50px;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  height: 100vh;
+}
+.header {
+  grid-area: header;
+  background-color: whitesmoke;
+  flex-direction: row-reverse;
+}
+.aside {
+  grid-area: aside;
+  background-color: darkblue;
+}
+.main {
+  grid-area: main;
+  background-color: white;
+  padding: 10px;
+}
+.footer {
+  grid-area: footer;
+  background-color: whitesmoke;
+}
+
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  color: darkblue;
+}
+.aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 2;
+  transform: translateX(-245px);
+}
+.aside.active {
+  transform: translateX(0);
+}
+.header-menu {
+  & > ul {
+    list-style: none;
+    display: flex;
+    & > li {
+      margin-right: 20px;
+      font-weight: bold;
+      font-size: 20px;
+      & > a {
+        text-decoration: none;
+        color: currentColor;
+      }
+    }
+  }
+}
+
+/* responsive layout */
+@media only screen and (min-width: 750px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+      'aside header'
+      'aside main'
+      'aside footer';
+    height: 100vh;
+  }
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateX(0);
+  }
+}
+
+.menu-icon {
+  position: fixed;
+  display: flex;
+  top: 2px;
+  left: 8px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+  color: black;
+}
+
+.header_search {
+  margin-left: 24px;
+}
+
+.aside_close-icon {
+  position: absolute;
+  visibility: visible;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+@media only screen and (min-width: 750px) {
+  .aside_close-icon {
+    display: none;
+  }
+}
+
+.lang{
+  width: 120px;
+  height: 30px;
+}

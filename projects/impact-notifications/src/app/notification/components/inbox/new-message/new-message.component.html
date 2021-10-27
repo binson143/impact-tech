@@ -1,0 +1,25 @@
+<div class="form-container">
+  <h3>New Message.</h3>
+  <form [formGroup]="messageForm"  id="register-form">
+    <div>
+      <mat-form-field>
+        <mat-label>Recipient*</mat-label>
+        <mat-select formControlName="recipient" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let user of data.users" [value]="user">
+            {{user.username }} ({{user.email}})
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Message*</mat-label>
+        <textarea matInput placeholder="message" formControlName="message" id="message"></textarea>
+      </mat-form-field>
+      <div class="action-panel">
+        <button mat-raised-button color="primary" [disabled]="messageForm.invalid" (click)="onSubmit()">Send</button> &nbsp;
+        <button mat-button (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </form>
+</div>

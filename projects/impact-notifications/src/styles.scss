@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+mat-form-field {
+  width: 100%;
+}
+
+.b-h-m {
+  height: 40px;
+}
+.action-panel{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/**/

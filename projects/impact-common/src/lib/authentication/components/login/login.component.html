@@ -1,0 +1,24 @@
+<div class="form-container">
+
+
+  <form [formGroup]="loginForm" fxLayout="column" fxLayout.xs="column" fxFlexFill (ngSubmit)="onLogin()"
+    id="login-form">
+    <div>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" id="username">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" id="password" type="password">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row-reverse" flex>
+      <button type="submit" mat-raised-button color="primary" class="b-h-m" id="login-btn">Login</button> &nbsp;
+      <a mat-stroked-button href="register" class="b-h-m" id="register-btn">Register</a>
+    </div>
+  </form>
+
+</div>

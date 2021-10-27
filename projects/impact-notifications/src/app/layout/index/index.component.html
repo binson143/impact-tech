@@ -1,0 +1,40 @@
+<div class="grid-container">
+  <div class="menu-icon" appToogler>
+    <strong> &#9776;</strong>
+  </div>
+  <header class="header">
+    <div class="header-menu">
+      <ul>
+        <li>
+          <select (change)="onLangChange($event.target.value)" class="lang">
+            <option *ngFor="let lang of langs">
+              {{lang}}
+            </option>
+          </select>
+
+        </li>
+        <li>
+          <a [routerLink]="['profile']">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{'dashboard.profile' |translate}}</a>
+        </li>
+        <li>
+          <a (click)="logout()">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;{{'dashboard.logout' |translate}}</a>
+        </li>
+
+      </ul>
+    </div>
+  </header>
+  <aside class="aside">
+    <div class="aside_close-icon" appToogler>
+      <strong>&times;</strong>
+    </div>
+    <app-side-nav></app-side-nav>
+  </aside>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="footer">
+    <div class="copyright">&copy;{{year}}, Impact Tech Ltd.</div>
+  </footer>
+</div>

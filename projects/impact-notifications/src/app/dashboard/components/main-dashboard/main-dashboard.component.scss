@@ -1,0 +1,48 @@
+.main-overview {
+  display: flex;
+  flex-wrap: wrap;
+}
+.overview-card {
+  flex-basis: 250px;
+  flex-grow: 1;
+  margin: 10px 10px;
+  padding: 20px;
+  height: fit-content;
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  box-shadow: 2px 3px 2px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+#recent-msgs {
+  border-collapse: collapse;
+  width: 100%;
+}
+#recent-msgs td,
+#recent-msgs th {
+  padding: 8px;
+}
+#recent-msgs tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#recent-msgs tr:hover {
+  background-color: #ddd;
+}
+#recent-msgs th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: royalblue;
+  color: white;
+}
+#recent-msgs td {
+  font-size: 13px;
+}
+#recent-msgs tr {
+  border: none;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 20px;
+}

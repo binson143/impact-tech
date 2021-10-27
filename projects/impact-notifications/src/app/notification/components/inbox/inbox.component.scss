@@ -1,0 +1,34 @@
+.messages{
+  display: flex;
+  flex-direction: column;
+}
+.message{
+  min-height: 80px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid royalblue;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+}
+.user-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+}
+.sender{
+  text-transform: capitalize;
+    font-size: 20px;
+    color: royalblue;
+}
+.timestamp{
+  font-size: 10px;
+  color: rgb(46, 48, 48);
+}
+.content{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: justify;
+}
