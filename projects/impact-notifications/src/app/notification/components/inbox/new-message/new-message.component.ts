@@ -35,7 +35,8 @@ export class NewMessageComponent implements OnInit {
     const notification = {
       sender: this.data.sender,
       message: this.messageForm.value.message,
-      timestamp: new Date()
+      timestamp: new Date(),
+      id: Math.ceil(Math.random() * Date.now())
     }
     this.notificationService.create({ recipient: this.messageForm.value.recipient.username, notification: notification }).subscribe(d => {
       this.snackBar.open("Message send successfully", "Done!", {

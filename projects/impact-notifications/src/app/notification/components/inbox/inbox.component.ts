@@ -3,6 +3,7 @@ import { SessionManagerService, UserService } from '@impactech/common';
 import { NotificationService } from '../../services/notification.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewMessageComponent } from './new-message/new-message.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
@@ -13,7 +14,7 @@ export class InboxComponent implements OnInit {
   users = []
   currentUser;
   constructor(private sessionService: SessionManagerService,
-    public dialog: MatDialog,
+    public dialog: MatDialog, private snackBar: MatSnackBar,
     private notificationService: NotificationService, private userService: UserService) { }
   ngOnInit(): void {
     this.currentUser = this.sessionService.User;
@@ -34,11 +35,18 @@ export class InboxComponent implements OnInit {
   }
   openDialog() {
     const dialogRef = this.dialog.open(NewMessageComponent, {
-      data: {users:this.users,sender:this.currentUser}
+      data: { users: this.users, sender: this.currentUser }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
-    });
+
   }
+
+  onDelete(id): void {
+    this.notificationService.delete({ id: id, username: this.currentUser },).subscribe(d => {
+      this.snackBar.open('Message deleted', 'deleted', {
+        duration: 1000,
+      });
+      this.getMessages();
+    })
+  }
+
 }

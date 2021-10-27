@@ -9,8 +9,9 @@
       <div class="user-info">
         <span class="sender">{{message.sender | titlecase}}</span> <span class="timestamp">{{message.timestamp | date }}</span>
       </div>
-      <div>
-        <p class="content">{{message.message}}</p>
+      <div class="msg-content">
+        <p class="content">{{message.message}}
+          <span (click)="onDelete(message.id)"><i class="fa fa-trash-o fa-2x hand"></i></span></p>
       </div>
     </div>
   </div>

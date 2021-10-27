@@ -1,9 +1,7 @@
-import { ContentObserver } from '@angular/cdk/observers';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'projects/impact-notifications/src/environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
   constructor(private httpClient: HttpClient) { }
@@ -13,6 +11,9 @@ export class NotificationService {
   }
   create(data: { recipient: string, notification: any }): Observable<any> {
     return this.httpClient.post(`${environment.api}/sendNotification`, data)
+  }
+  delete(data): Observable<any> {
+    return this.httpClient.post(`${environment.api}/deleteMessage`, data);
   }
   getRecentMessages(numberOfMessage: number, notifications: Array<{ sender: string, timestamp: number }>) {
     if (notifications?.length > numberOfMessage) {
@@ -37,7 +38,6 @@ export class NotificationService {
     })
     const messageGroup = this.groupBy(recentNotifications, x => x.actualDate);
     for (let [key, value] of messageGroup) {
-
       value.forEach(element => {
         console.dir(element.sender)
         if (result[element.sender]) {
@@ -49,14 +49,9 @@ export class NotificationService {
     }
     const users = Object.keys(result).sort(function (a, b) { return result[b] - result[a] })
     return users;
-
-
-
   }
   getMessagePerUser(notifications: Array<{ sender: string }>): any {
-
     return this.groupBy(notifications, notification => notification.sender);
-
   }
   // move this to common lib.
   private groupBy(list, keyGetter) {

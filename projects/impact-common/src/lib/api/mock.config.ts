@@ -24,8 +24,23 @@ export default {
     },
     'https://localhost:42000/updateUser': {
       handler: updateUser
+    },
+    'https://localhost:42000/deleteMessage': {
+      handler: deleteMessage
     }
-
+  }
+}
+function deleteMessage(body) {
+  let notifications = localStorage.getItem('users-notifications');
+  if (notifications != null) {
+    const allNotifications=JSON.parse(notifications);
+    const userNotifications=allNotifications.find(item=>item.username===body.username);
+    userNotifications.notifications = userNotifications.notifications.filter(item => item.id !== body.id);
+    localStorage.removeItem('users-notifications');
+    localStorage.setItem('users-notifications', JSON.stringify(allNotifications));
+    return of(new HttpResponse({
+      status: 200, body: {}
+    }))
   }
 }
 function getUserByName(params) {
