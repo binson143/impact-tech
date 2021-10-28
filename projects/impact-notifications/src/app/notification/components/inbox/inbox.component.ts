@@ -11,16 +11,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class InboxComponent implements OnInit {
   messages = [];
-  users = []
+  users = [];
   currentUser;
-  constructor(private sessionService: SessionManagerService,
-    public dialog: MatDialog, private snackBar: MatSnackBar,
-    private notificationService: NotificationService, private userService: UserService) { }
+  constructor(
+    private sessionService: SessionManagerService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private notificationService: NotificationService,
+    private userService: UserService) { }
   ngOnInit(): void {
     this.currentUser = this.sessionService.User;
     this.getUsers();
     this.getMessages();
-    //console.dir(Math.round(Date.now() / 1000));
   }
   getMessages(): void {
     this.notificationService.get(this.currentUser).subscribe(d => {
@@ -29,24 +31,20 @@ export class InboxComponent implements OnInit {
   }
   getUsers() {
     this.userService.get().subscribe(d => {
-      console.dir(d);
-      this.users = d.filter(x => x.username !== this.currentUser)
-    })
+      this.users = d.filter(x => x.username !== this.currentUser);
+    });
   }
   openDialog() {
     const dialogRef = this.dialog.open(NewMessageComponent, {
       data: { users: this.users, sender: this.currentUser }
     });
-
   }
-
   onDelete(id): void {
-    this.notificationService.delete({ id: id, username: this.currentUser },).subscribe(d => {
+    this.notificationService.delete({ id, username: this.currentUser }).subscribe(_ => {
       this.snackBar.open('Message deleted', 'deleted', {
         duration: 1000,
       });
       this.getMessages();
-    })
+    });
   }
-
 }

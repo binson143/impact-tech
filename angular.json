@@ -108,7 +108,8 @@
               "projects/impact-notifications/e2e/tsconfig.json"
             ],
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "**/**/*.spec.ts"
             ]
           }
         },
@@ -160,7 +161,8 @@
               "projects/impact-common/tsconfig.spec.json"
             ],
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "**/**/*.spec.ts"
             ]
           }
         }

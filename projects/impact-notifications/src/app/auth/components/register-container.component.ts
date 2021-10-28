@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterStatus } from '../model/register-status.enum';
@@ -11,17 +12,16 @@ import { AuthService } from '../services/auth.service';
   ]
 })
 export class RegisterContainerComponent {
-  formModel = { username: '', password: '', email: '' }
-  constructor(private authService: AuthService, private toaster: ToastrService, private router: Router) { }
+  formModel = { username: '', password: '', email: '' };
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) { }
 
   public handleRegister(e): void {
     this.authService.register(e).subscribe((d: { message: string, status: RegisterStatus }) => {
       if (d.status === RegisterStatus.SUCCESS) {
-        this.toaster.success(d.message, 'Success');
+        this.snackBar.open(d.message, 'Success');
         this.router.navigate(['./login']);
-        console.dir('loc change requested');
       } else {
-        this.toaster.error(d.message, 'Error')
+        this.snackBar.open(d.message, 'Error');
       }
     });
   }

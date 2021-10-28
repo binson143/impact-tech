@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 export class TooglerDirective {
   @HostListener('click') onClick() {
     const aside = document.querySelector('.aside');
-    this.toggle(aside, 'active')
+    this.toggle(aside, 'active');
   }
   private toggle(el, className): void {
     if (el.classList.contains(className)) {

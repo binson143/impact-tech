@@ -29,18 +29,18 @@ export default {
       handler: deleteMessage
     }
   }
-}
+};
 function deleteMessage(body) {
-  let notifications = localStorage.getItem('users-notifications');
+  const notifications = localStorage.getItem('users-notifications');
   if (notifications != null) {
-    const allNotifications=JSON.parse(notifications);
-    const userNotifications=allNotifications.find(item=>item.username===body.username);
+    const allNotifications = JSON.parse(notifications);
+    const userNotifications = allNotifications.find(item => item.username === body.username);
     userNotifications.notifications = userNotifications.notifications.filter(item => item.id !== body.id);
     localStorage.removeItem('users-notifications');
     localStorage.setItem('users-notifications', JSON.stringify(allNotifications));
     return of(new HttpResponse({
       status: 200, body: {}
-    }))
+    }));
   }
 }
 function getUserByName(params) {
@@ -54,7 +54,7 @@ function getUserByName(params) {
   }
   return of(new HttpResponse({
     status: 200, body: {}
-  }))
+  }));
 }
 function updateUser(body) {
   const username = body.username;
@@ -65,14 +65,14 @@ function updateUser(body) {
   localStorage.removeItem('registered-users');
   localStorage.setItem('registered-users', JSON.stringify(registeredUsers));
   return of(new HttpResponse({
-    status: 200, body: body
+    status: 200, body
   }));
 }
 function getAllUsers() {
-  const registeredUsers = localStorage.getItem('registered-users')
+  const registeredUsers = localStorage.getItem('registered-users');
   if (registeredUsers !== null) {
     const users = JSON.parse(registeredUsers).map(x => {
-      return { username: x.username, email: x.email }
+      return { username: x.username, email: x.email };
     });
     return of(new HttpResponse({
       status: 200, body: users
@@ -83,11 +83,11 @@ function getAllUsers() {
   }));
 }
 function getNotifications(params) {
-  let username = params.get('username');
-  let notifications = localStorage.getItem('users-notifications');
+  const username = params.get('username');
+  const notifications = localStorage.getItem('users-notifications');
   if (notifications != null) {
-    let userNotifications = JSON.parse(notifications);
-    let index = userNotifications.findIndex(x => x.username === username)
+    const userNotifications = JSON.parse(notifications);
+    const index = userNotifications.findIndex(x => x.username === username);
     if (index > -1) {
       return of(new HttpResponse({
         status: 200, body: userNotifications[index].notifications
@@ -99,10 +99,10 @@ function getNotifications(params) {
   }));
 }
 function sendNotifications(params) {
-  let notifications = localStorage.getItem('users-notifications')
+  const notifications = localStorage.getItem('users-notifications');
   if (notifications != null) {
-    let userNotifications = JSON.parse(notifications);
-    let index = userNotifications.findIndex(x => x.username === params.recipient);
+    const userNotifications = JSON.parse(notifications);
+    const index = userNotifications.findIndex(x => x.username === params.recipient);
     if (index > -1) {
       userNotifications[index].notifications.push(params.notification);
     } else {
@@ -126,9 +126,9 @@ function sendNotifications(params) {
   }));
 }
 function register(body) {
-  let registeredUseres = localStorage.getItem('registered-users')
+  const registeredUseres = localStorage.getItem('registered-users');
   if (registeredUseres != null) {
-    let users = JSON.parse(registeredUseres);
+    const users = JSON.parse(registeredUseres);
     if (users.findIndex(x => x.username === body.username) === -1) {
       users.push(body);
       localStorage.setItem('registered-users', JSON.stringify(users));
@@ -160,11 +160,11 @@ function register(body) {
   }
 }
 function login(body) {
-  let isAuthenticated: boolean = false;
+  let isAuthenticated = false;
   let userDetails: any = {};
   if (localStorage.getItem('registered-users') != null) {
-    let users = JSON.parse(localStorage.getItem('registered-users'));
-    let index = users.findIndex(x => x.username === body.username && x.password === body.password);
+    const users = JSON.parse(localStorage.getItem('registered-users'));
+    const index = users.findIndex(x => x.username === body.username && x.password === body.password);
     if (index > -1) {
       isAuthenticated = true;
       userDetails = users[index];
@@ -174,7 +174,7 @@ function login(body) {
     status: 200, body:
     {
       authenticated: isAuthenticated,
-      userDetails: userDetails
+      userDetails
     }
   }));
 }

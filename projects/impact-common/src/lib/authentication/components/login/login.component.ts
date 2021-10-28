@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Login } from '../../models/login.model'
+import { Login } from '../../models/login.model';
 
 
 @Component({

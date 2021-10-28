@@ -8,14 +8,14 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   get(): Observable<any> {
-    return this.httpClient.get(`${environment.api}/users`)
+    return this.httpClient.get(`${environment.api}/users`);
   }
   getByName(username: string): Observable<any> {
     const params = new HttpParams().append('username', username);
-    return this.httpClient.get(`${environment.api}/userByName`, { params: params });
+    return this.httpClient.get(`${environment.api}/userByName`, {  params });
 
   }
   update(user: any): Observable<any> {
-    return this.httpClient.post(`${environment.api}/updateUser`, user)
+    return this.httpClient.post(`${environment.api}/updateUser`, user);
   }
 }

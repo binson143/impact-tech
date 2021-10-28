@@ -12,7 +12,7 @@ export class MainDashboardComponent implements OnInit {
 
   recentMessages = [];
   messagesPerUser = [];
-  frequentUsers=[];
+  frequentUsers = [];
   constructor(private notificationService: NotificationService, private sessionService: SessionManagerService) { }
 
   ngOnInit(): void {
@@ -24,17 +24,17 @@ export class MainDashboardComponent implements OnInit {
   bootstrapDashboard(): void {
     this.notificationService.get(this.sessionService.User).subscribe(notification => {
       this.recentMessages = this.notificationService.getRecentMessages(10, [...notification]);
-      const messageMap = this.notificationService.getMessagePerUser([...notification])
-      for (let [key, value] of messageMap) {
+      const messageMap = this.notificationService.getMessagePerUser([...notification]);
+      for (const [key, value] of messageMap) {
         this.messagesPerUser.push(
           {
-            "name": key,
-            "value": value.length
+            name: key,
+            value: value.length
           }
         );
       }
-      this.frequentUsers= this.notificationService.getFrequentUsers([...notification]);
-    })
+      this.frequentUsers = this.notificationService.getFrequentUsers([...notification]);
+    });
   }
 
 

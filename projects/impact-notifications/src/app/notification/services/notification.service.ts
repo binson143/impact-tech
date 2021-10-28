@@ -7,10 +7,10 @@ export class NotificationService {
   constructor(private httpClient: HttpClient) { }
   get(username: string): Observable<any> {
     const params = new HttpParams().append('username', username);
-    return this.httpClient.get(`${environment.api}/notifications`, { params: params });
+    return this.httpClient.get(`${environment.api}/notifications`, { params });
   }
   create(data: { recipient: string, notification: any }): Observable<any> {
-    return this.httpClient.post(`${environment.api}/sendNotification`, data)
+    return this.httpClient.post(`${environment.api}/sendNotification`, data);
   }
   delete(data): Observable<any> {
     return this.httpClient.post(`${environment.api}/deleteMessage`, data);
@@ -24,22 +24,22 @@ export class NotificationService {
     }
   }
   getFrequentUsers(notifications: Array<{ sender: string, timestamp: Date }>): any {
-    //On what basis is ‘Frequent users in chat' computed, recent chats:( ?? total number of chats ??.
+    // on what basis is ‘Frequent users in chat' computed, recent chats:( ?? total number of chats ??.
     // lets make a fuzzy logic here.
     // get messages exchanged by per day.
     // list 5  users who contacted the user in most number of days.
     const result = {};
     const lastMessage = notifications[notifications.length - 1];
     const lowerDate = new Date(lastMessage.timestamp);
-    lowerDate.setDate(lowerDate.getDate() - 3)// last 3 days.
+    lowerDate.setDate(lowerDate.getDate() - 3);
     const recentNotifications = notifications.filter(x => new Date(x.timestamp) >= lowerDate);
+    const dateProp = 'actualDate';
     recentNotifications.forEach(d => {
-      d['actualDate'] = new Date(d.timestamp).toLocaleDateString();
-    })
+      d[dateProp] = new Date(d.timestamp).toLocaleDateString();
+    });
     const messageGroup = this.groupBy(recentNotifications, x => x.actualDate);
-    for (let [key, value] of messageGroup) {
+    for (const [key, value] of messageGroup) {
       value.forEach(element => {
-        console.dir(element.sender)
         if (result[element.sender]) {
           result[element.sender] = result[element.sender] + 1;
         } else {
@@ -47,7 +47,7 @@ export class NotificationService {
         }
       });
     }
-    const users = Object.keys(result).sort(function (a, b) { return result[b] - result[a] })
+    const users = Object.keys(result).sort((a, b) => result[b] - result[a]);
     return users;
   }
   getMessagePerUser(notifications: Array<{ sender: string }>): any {

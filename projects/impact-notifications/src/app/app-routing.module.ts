@@ -21,7 +21,7 @@ const routes: Routes = [
         path: 'inbox', loadChildren: async () => import('./notification/notification.module').then(m => m.NotificationModule)
       },
       {
-        path:'profile',loadChildren:async()=>import('./user-management/user-management.module').then(m=>m.UserManagementModule)
+        path: 'profile', loadChildren: async () => import('./user-management/user-management.module').then(m => m.UserManagementModule)
       }
 
 

@@ -7,7 +7,7 @@ import { matModule } from '../module.cont';
 
 const routes: Routes = [{
   path: '', component: ProfileEditorComponent
-}]
+}];
 
 @NgModule({
   declarations: [ProfileEditorComponent],

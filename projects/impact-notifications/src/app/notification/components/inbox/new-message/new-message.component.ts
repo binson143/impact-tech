@@ -24,7 +24,7 @@ export class NewMessageComponent implements OnInit {
     this.messageForm = this.fb.group({
       recipient: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required])
-    })
+    });
   }
 
 
@@ -37,11 +37,11 @@ export class NewMessageComponent implements OnInit {
       message: this.messageForm.value.message,
       timestamp: new Date(),
       id: Math.ceil(Math.random() * Date.now())
-    }
-    this.notificationService.create({ recipient: this.messageForm.value.recipient.username, notification: notification }).subscribe(d => {
-      this.snackBar.open("Message send successfully", "Done!", {
+    };
+    this.notificationService.create({ recipient: this.messageForm.value.recipient.username,  notification }).subscribe(d => {
+      this.snackBar.open('Message send successfully', 'Done!', {
         duration: 1000,
       });
-    })
+    });
   }
 }

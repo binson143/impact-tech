@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { matModule } from '../module.cont';
 const routes: Routes = [{
   path: '', component: InboxComponent
-}]
+}];
 @NgModule({
   imports: [RouterModule.forChild(routes), CommonModule, NgPipesModule, ReactiveFormsModule,
   ...matModule

@@ -10,17 +10,21 @@ export class ProfileEditorComponent implements OnInit {
   isEdit = false;
   profileForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private sessionService: SessionManagerService, private snackBar: MatSnackBar) { }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private sessionService: SessionManagerService,
+    private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.buildForm();
     this.getCurrentUserProfile();
   }
   buildForm(): void {
     this.profileForm = this.fb.group({
-      username: new FormControl({ value: '', disabled: true }, [Validators.required],),
+      username: new FormControl({ value: '', disabled: true }, [Validators.required]),
       email: new FormControl({ value: '', disabled: !this.isEdit }, [Validators.required, Validators.email]),
       password: new FormControl({ value: '', disabled: !this.isEdit }, [Validators.required])
-    })
+    });
   }
   getCurrentUserProfile(): void {
     this.userService.getByName(this.sessionService.User).subscribe(profile => {
@@ -28,7 +32,7 @@ export class ProfileEditorComponent implements OnInit {
         this.profileForm.patchValue(profile);
         this.disableForm();
       }
-    })
+    });
   }
   onEdit(): void {
     this.isEdit = true;
@@ -40,8 +44,8 @@ export class ProfileEditorComponent implements OnInit {
     this.profileForm.get('username').enable();
     this.userService.update(this.profileForm.value).subscribe(_ => {
       this.disableForm();
-      this.snackBar.open('Profile details updated!.', 'Success',{duration: 1000});
-    })
+      this.snackBar.open('Profile details updated!.', 'Success', { duration: 1000 });
+    });
 
   }
 

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class SessionManagerService {
   private readonly STORAGE_KEY = 'imp-auth-info';
   loggedIn(username: string): void {
-    window.sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify({ authenticated: true, username: username }))
+    window.sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify({ authenticated: true,  username }));
   }
   loggedOut(): void {
     window.sessionStorage.removeItem(this.STORAGE_KEY);
@@ -21,4 +21,4 @@ export class SessionManagerService {
     return '';
   }
 }
-1
+

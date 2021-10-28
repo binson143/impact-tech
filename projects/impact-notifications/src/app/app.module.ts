@@ -35,22 +35,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormlyMaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
-    FormlyModule.forRoot({ extras: { lazyRender: true }, validationMessages: [
+    FormlyModule.forRoot({
+      extras: { lazyRender: true }, validationMessages: [
 
-      { name: 'required', message: 'This field is required.' },
-      {name:'email',message:'Valid email required.'}
-    ], }),
+        { name: 'required', message: 'This field is required.' },
+        { name: 'email', message: 'Valid email required.' }
+      ],
+    }),
     NgPipesModule,
     ...matModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       },
       defaultLanguage: 'en'
-  })
+    })
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
