@@ -11,13 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from './layout/layout.module';
 
 import { NgPipesModule } from 'ngx-pipes';
 import { matModule } from './module.cont';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../environments/environment';
+import { IMP_API_URL } from '@impactech/common';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -54,7 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    { provide: IMP_API_URL, useValue: environment.api }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,27 +1,26 @@
+
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { UserService } from '@impactech/common';
 import { RegisterStatus } from '../model/register-status.enum';
-import { AuthService } from '../services/auth.service';
+
 @Component({
   selector: 'app-register',
-  template: `<imp-register [registerModel]="formModel" (register)="handleRegister($event)"></imp-register>`,
-  styles: [
-    ':host:{display: flex;justify-content: center;align-items: center;height: 100vh;}'
-  ]
+  template: `<div class="place-center"><imp-register [registerModel]="formModel" (register)="handleRegister($event)"></imp-register></div>`,
+
 })
 export class RegisterContainerComponent {
   formModel = { username: '', password: '', email: '' };
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private snackBar: MatSnackBar, private router: Router, private userService: UserService) { }
 
   public handleRegister(e): void {
-    this.authService.register(e).subscribe((d: { message: string, status: RegisterStatus }) => {
+    this.userService.register(e).subscribe((d: { message: string, status: RegisterStatus }) => {
       if (d.status === RegisterStatus.SUCCESS) {
-        this.snackBar.open(d.message, 'Success');
+        this.snackBar.open(d.message, 'Success',{ duration: 1500 });
         this.router.navigate(['./login']);
       } else {
-        this.snackBar.open(d.message, 'Error');
+        this.snackBar.open(d.message, 'Error',{ duration: 1500 });
       }
     });
   }

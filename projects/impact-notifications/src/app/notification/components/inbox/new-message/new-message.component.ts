@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '@impactech/common';
-import { filter } from 'rxjs/operators';
 import { NotificationService } from '../../../services/notification.service';
 
 @Component({

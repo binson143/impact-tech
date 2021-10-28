@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionManagerService, UserService } from '@impactech/common';
+import { SessionManagerService,UserService } from '@impactech/common';
 import { NotificationService } from '../../services/notification.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { NewMessageComponent } from './new-message/new-message.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
@@ -27,6 +28,7 @@ export class InboxComponent implements OnInit {
   getMessages(): void {
     this.notificationService.get(this.currentUser).subscribe(d => {
       this.messages = d.reverse();
+
     });
   }
   getUsers() {
