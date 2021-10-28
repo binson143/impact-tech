@@ -4,14 +4,14 @@ import { NotificationService } from './notification.service';
 describe('NotificationService', () => {
 
   const testNotifications = [
-    { sender: "neena", timestamp: new Date("2021-10-26T15:02:35.969Z"), id: 2 },
-    { sender: "george", timestamp: new Date("2021-10-27T15:02:35.969Z"), id: 3 },
-    { sender: "peter", timestamp: new Date("2021-09-27T15:02:35.969Z"), id: 4 },
-    { sender: "neena", timestamp: new Date("2021-10-27T15:02:35.969Z"), id: 5 },
-    { sender: "mathew", timestamp: new Date("2021-10-26T15:02:35.969Z"), id: 6 },
-    { sender: "mathew", timestamp: new Date("2021-10-27T15:02:35.969Z"), id: 7 },
-    { sender: "kiran", timestamp: new Date("2020-10-27T15:02:35.969Z"), id: 8 },
-    { sender: "kiran", timestamp: new Date("2020-10-26T15:02:35.969Z"), id: 9 }
+    { sender: "neena", timestamp: "2021-10-26T15:02:35.969Z", id: 2 },
+    { sender: "george", timestamp: "2021-10-27T15:02:35.969Z", id: 3 },
+    { sender: "peter", timestamp: "2021-10-27T15:02:35.969Z", id: 4 },
+    { sender: "neena", timestamp: "2021-10-27T15:02:35.969Z", id: 5 },
+    { sender: "mathew", timestamp: "2021-10-26T15:02:35.969Z", id: 6 },
+    { sender: "mathew", timestamp: "2021-10-27T15:02:35.969Z", id: 7 },
+    { sender: "kiran", timestamp: "2021-10-22T15:02:35.969Z", id: 8 },
+    { sender: "kiran", timestamp: "2021-10-22T15:02:35.969Z", id: 9 }
   ]
   let service: NotificationService;
   let controller: HttpTestingController;
@@ -37,14 +37,16 @@ describe('NotificationService', () => {
     expect(messages.length).toEqual(1);
   });
   it('list latest messages', () => {
-    const expected = [7, 5, 3];
+    const expected = [3,4,5];
     const latestMessages = service.getRecentMessages(3, [...testNotifications]).map(d=>d['id']) // capturing id
+
     expect(latestMessages.length).toBe(3);
     expect(latestMessages).toEqual(expected);
   });
   it('list frequent users',()=>{
-    const expected=["neena","mathew","george"];
+    const expected=["neena","mathew","george","peter"];
     const frequentUsers = service.getFrequentUsers( [...testNotifications]);
+
     expect(frequentUsers).toEqual(expected);
   });
 

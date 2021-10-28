@@ -16,15 +16,12 @@ export class NotificationService {
     return this.httpClient.post(`${environment.api}/deleteMessage`, data);
   }
   getRecentMessages(numberOfMessage: number, notifications: Array<{ sender: string, timestamp: any }>) {
+    const sortedArray = this.sortNotificationByDate(notifications);
     if (notifications?.length > numberOfMessage) {
-      const sortedArray = notifications.sort((a, b) => {
-        return (a.timestamp - b.timestamp);
-      });
-      return sortedArray.slice(-Math.abs(numberOfMessage)).reverse();
-
+      return sortedArray.slice(0, numberOfMessage);
     }
     else {
-      return notifications.reverse();
+      return sortedArray;
     }
   }
   getFrequentUsers(notifications: Array<{ sender: string, timestamp: any }>): any {
@@ -35,15 +32,14 @@ export class NotificationService {
     if (notifications?.length === 0) {
       return [];
     }
+
     const result = {};
-    const sortedArray = notifications.sort((a, b) => {
-      return (a.timestamp - b.timestamp);
-    });
-    const lastMessage = sortedArray[sortedArray.length - 1];
+    const sortedArray = this.sortNotificationByDate(notifications);
+
+    const lastMessage = sortedArray[0];
     const lowerDate = new Date(lastMessage.timestamp);
     lowerDate.setDate(lowerDate.getDate() - 3);
     const recentNotifications = notifications.filter(x => new Date(x.timestamp) >= lowerDate);
-
     const dateProp = 'actualDate';
     recentNotifications.forEach(d => {
       d[dateProp] = new Date(d.timestamp).toLocaleDateString();
@@ -64,6 +60,11 @@ export class NotificationService {
   }
   getMessagePerUser(notifications: Array<{ sender: string }>): any {
     return this.groupBy(notifications, notification => notification.sender);
+  }
+  sortNotificationByDate(notifications: Array<{ sender: string, timestamp: any }>) {
+console.dir(notifications);
+    const sorted= notifications.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+    return [...sorted];
   }
   // move this to common lib.
   private groupBy(list, keyGetter) {

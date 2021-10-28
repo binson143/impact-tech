@@ -27,7 +27,9 @@ export class InboxComponent implements OnInit {
   }
   getMessages(): void {
     this.notificationService.get(this.currentUser).subscribe(d => {
-      this.messages = d.reverse();
+      console.dir(d);
+      this.messages = this.notificationService.sortNotificationByDate(d);
+
 
     });
   }

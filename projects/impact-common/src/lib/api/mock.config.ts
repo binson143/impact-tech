@@ -60,7 +60,6 @@ function updateUser(body) {
   const username = body.username;
   const registeredUsers = JSON.parse(localStorage.getItem('registered-users'));
   const userIndex = registeredUsers.findIndex(x => x.username === username);
-  console.dir(userIndex);
   registeredUsers[userIndex] = body;
   localStorage.removeItem('registered-users');
   localStorage.setItem('registered-users', JSON.stringify(registeredUsers));

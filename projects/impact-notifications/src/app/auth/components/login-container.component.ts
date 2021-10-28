@@ -5,7 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
-  template: `<div class="place-center"><imp-login (login)="handleLogin($event)"></imp-login></div>`
+  template: `<div class="place-center">
+    <imp-login (login)="handleLogin($event)"></imp-login></div>`
 
 })
 export class LoginContainerComponent {

@@ -21,11 +21,18 @@ describe('InboxComponent', () => {
   beforeEach(async () => {
     sessionSpy = jasmine.createSpyObj('SessionManagerService', ['User']);
     sessionSpy.User.and.returnValue('admin');
-    notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['get']);
+    notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['get','sortNotificationByDate']);
     notificationServiceSpy.get.and.returnValue(of([
-      { sender: "neena", message: "Let's have a cofee now", timestamp: "2021-10-27T15:02:35.969Z", id: 1 },
-      { sender: "John", message: "Let's have a walk now", timestamp: "2021-10-27T15:01:35.969Z", id: 2 }
-    ]))
+      {sender: 'enric', message: 'I completed the puzzle', timestamp: '2021-10-28T14:06:38.078Z', id: 12},
+      {sender: 'kiran', message: 'Hello Binson', timestamp: '2021-10-28T16:06:38.078Z', id: 1}
+
+    ]));
+    notificationServiceSpy.sortNotificationByDate.and.returnValue([
+      {sender: 'kiran', message: 'Hello Binson', timestamp: '2021-10-28T16:06:38.078Z', id: 1},
+      {sender: 'enric', message: 'I completed the puzzle', timestamp: '2021-10-28T14:06:38.078Z', id: 12},
+
+    ]);
+
     userServiceSpy = jasmine.createSpyObj('UserService', ['get']);
     userServiceSpy.get.and.returnValue(of([
       { username: "admin", email: "binson007@gmail.com" },
@@ -60,8 +67,12 @@ describe('InboxComponent', () => {
     expect(component).toBeTruthy();
   });
   it('render all messages', fakeAsync(() => {
+
+    component.ngOnInit();
     tick();
     const messagesElements = fixture.debugElement.query(By.css('.message'))
+    console.dir(component.messages);
+    expect(notificationServiceSpy.get).toHaveBeenCalled();
     expect(component.messages.length).toBe(2);
     expect(messagesElements.children.length).toBe(2);
   }));

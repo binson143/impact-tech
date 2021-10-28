@@ -8,13 +8,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;1,100&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;1,100&family=Roboto:wght@100;400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 
 <body>
   <app-root></app-root>
 </body>
+<script>
+  window.populate = function () {
+
+    // inserting users.
+    console.dir('5 users inserted');
+    userArray = [
+      { email: "binson143@gmail.com", username: "binson", password: "binson" },
+      { email: "neena@gmail.com", username: "neena", password: "neena" },
+      { email: "kiran@gmail.com", username: "kiran", password: "kiran" },
+      { email: "enric@gmail.com", username: "enric", password: "enric" },
+      { email: "manu@gmail.com", username: "manu", password: "manu" },
+
+
+    ]
+    localStorage.removeItem('registered-users');
+    localStorage.setItem('registered-users', JSON.stringify(userArray))
+    console.dir('users are-------');
+    console.dir(userArray);
+    localStorage.removeItem('users-notifications');
+    console.dir('notification added for binson, please login using binson,binson');
+    notificationArray = [
+      {
+        username: "binson",
+        notifications: [{ sender: "kiran", message: "Hello Binson", timestamp: "2021-10-28T16:06:38.078Z", id: 1 },
+
+        { sender: "kiran", message: "lets have a tea Binson", timestamp: "2021-10-27T15:06:38.078Z", id: 2 },
+        { sender: "kiran", message: "Good morning Binson", timestamp: "2021-10-27T16:06:38.078Z", id: 3 },
+        { sender: "kiran", message: "Hey Dude,Let's play", timestamp: "2021-10-28T07:06:38.078Z", id: 4 },
+        { sender: "neena", message: "Are you there in office", timestamp: "2021-10-28T11:06:38.078Z", id: 5 },
+        { sender: "neena", message: "Bring your bag today", timestamp: "2021-10-27T11:06:38.078Z", id: 6 },
+        { sender: "neena", message: "I will'be late today", timestamp: "2021-10-28T07:06:38.078Z", id: 7 },
+        { sender: "enric", message: "I am off today", timestamp: "2021-10-28T07:06:38.078Z", id: 11 },
+        { sender: "enric", message: "I completed the puzzle", timestamp: "2021-10-28T14:06:38.078Z", id: 12 },
+        { sender: "enric", message: "I got salary", timestamp: "2021-10-26T11:06:38.078Z", id: 19},
+        { sender: "manu", message: "I am leaving from here", timestamp: "2021-09-28T07:06:38.078Z", id: 20}
+      ]
+      },
+
+
+
+    ];
+    localStorage.setItem('users-notifications', JSON.stringify(notificationArray))
+  }
+</script>
 
 </html>
