@@ -1,6 +1,7 @@
 .messages{
   display: flex;
   flex-direction: column;
+  width: 340px;
 }
 .message{
   min-height: 80px;
@@ -39,3 +40,8 @@
   cursor: pointer;
 }
 
+@media only screen and (min-width: 750px) {
+  .messages{
+   width: 100%;
+  }
+}

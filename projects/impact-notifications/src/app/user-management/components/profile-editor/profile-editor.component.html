@@ -1,4 +1,5 @@
-<div class="form-container">
+<div class="place-center">
+<div class="form-container  ">
   <form [formGroup]="profileForm">
     <mat-form-field>
       <mat-label>Username*</mat-label>
@@ -17,4 +18,5 @@
       <button mat-raised-button color="primary" *ngIf="isEdit" type="button" (click)="onSubmit()" [disabled]="profileForm.invalid">Submit</button> &nbsp;
     </div>
   </form>
+</div>
 </div>

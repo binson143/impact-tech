@@ -1,16 +1,13 @@
-
-
 .form-container{
-  width: 400px;
-  //border: 1px solid #30a7d4;
+  width: 300px;
   padding: 10px;
-  //background-color:#30a7d4!important;
   box-shadow: 2px 3px 2px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-
-
-
 }
-
 form{
   margin-top: 10px;
+}
+@media only screen and (min-width: 750px) {
+  .form-container {
+    width: 400px;
+  }
 }

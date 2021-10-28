@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionManagerService,UserService } from '@impactech/common';
+import { SessionManagerService, UserService } from '@impactech/common';
 import { NotificationService } from '../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewMessageComponent } from './new-message/new-message.component';

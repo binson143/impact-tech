@@ -15,28 +15,40 @@ export class NotificationService {
   delete(data): Observable<any> {
     return this.httpClient.post(`${environment.api}/deleteMessage`, data);
   }
-  getRecentMessages(numberOfMessage: number, notifications: Array<{ sender: string, timestamp: number }>) {
+  getRecentMessages(numberOfMessage: number, notifications: Array<{ sender: string, timestamp: any }>) {
     if (notifications?.length > numberOfMessage) {
-      return notifications.slice(-Math.abs(numberOfMessage)).reverse();
+      const sortedArray = notifications.sort((a, b) => {
+        return (a.timestamp - b.timestamp);
+      });
+      return sortedArray.slice(-Math.abs(numberOfMessage)).reverse();
+
     }
     else {
       return notifications.reverse();
     }
   }
-  getFrequentUsers(notifications: Array<{ sender: string, timestamp: Date }>): any {
+  getFrequentUsers(notifications: Array<{ sender: string, timestamp: any }>): any {
     // on what basis is ‘Frequent users in chat' computed, recent chats:( ?? total number of chats ??.
     // lets make a fuzzy logic here.
     // get messages exchanged by per day.
     // list 5  users who contacted the user in most number of days.
+    if (notifications?.length === 0) {
+      return [];
+    }
     const result = {};
-    const lastMessage = notifications[notifications.length - 1];
+    const sortedArray = notifications.sort((a, b) => {
+      return (a.timestamp - b.timestamp);
+    });
+    const lastMessage = sortedArray[sortedArray.length - 1];
     const lowerDate = new Date(lastMessage.timestamp);
     lowerDate.setDate(lowerDate.getDate() - 3);
     const recentNotifications = notifications.filter(x => new Date(x.timestamp) >= lowerDate);
+
     const dateProp = 'actualDate';
     recentNotifications.forEach(d => {
       d[dateProp] = new Date(d.timestamp).toLocaleDateString();
     });
+
     const messageGroup = this.groupBy(recentNotifications, x => x.actualDate);
     for (const [key, value] of messageGroup) {
       value.forEach(element => {

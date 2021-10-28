@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SessionManagerService,UserService } from '@impactech/common';
+import { SessionManagerService, UserService } from '@impactech/common';
 
 @Component({
   selector: 'app-profile-editor',
-  templateUrl: 'profile-editor.component.html'
+  templateUrl: 'profile-editor.component.html',
+  styleUrls: ['profile-editor.component.scss']
 })
 export class ProfileEditorComponent implements OnInit {
   isEdit = false;

@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { Login, SessionManagerService,AuthService } from '@impactech/common';
+import { Login, SessionManagerService, AuthService } from '@impactech/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 @Component({
@@ -21,7 +21,7 @@ export class LoginContainerComponent {
         this.sessionManager.loggedIn(e.username);
         this.router.navigate(['./app']);
       } else {
-        this.snackBar.open('User details not found', 'Login Error',{duration:1500});
+        this.snackBar.open('User details not found', 'Login Error', { duration: 1500 });
       }
     });
   }

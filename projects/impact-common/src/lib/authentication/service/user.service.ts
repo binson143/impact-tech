@@ -6,7 +6,7 @@ import { IMP_API_URL } from '../tokens';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private httpClient: HttpClient, @Inject(IMP_API_URL) public apiUrl: String) { }
+  constructor(private httpClient: HttpClient, @Inject(IMP_API_URL) public apiUrl: string) { }
 
   get(): Observable<any> {
     return this.httpClient.get(`${this.apiUrl}/users`);

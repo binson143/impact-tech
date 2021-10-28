@@ -1,5 +1,5 @@
 import { NewMessageComponent } from './new-message.component';
-import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from "@angular/core/testing";
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { matModule } from 'projects/impact-notifications/src/app/module.cont';
@@ -56,9 +56,9 @@ describe('NewMessage', () => {
     matSelect.click();
     fixture.detectChanges()
     const options = fixture.debugElement.query(By.css('.user-info'));
-    console.dir(fixture.debugElement.nativeElement);
     expect(component.data.users.length).toBe(2);
     expect(options.children.length).toBe(2);
+    flush();
   }));
 
   it('send messages on click', fakeAsync(() => {

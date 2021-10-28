@@ -17,10 +17,10 @@ export class RegisterContainerComponent {
   public handleRegister(e): void {
     this.userService.register(e).subscribe((d: { message: string, status: RegisterStatus }) => {
       if (d.status === RegisterStatus.SUCCESS) {
-        this.snackBar.open(d.message, 'Success',{ duration: 1500 });
+        this.snackBar.open(d.message, 'Success', { duration: 1500 });
         this.router.navigate(['./login']);
       } else {
-        this.snackBar.open(d.message, 'Error',{ duration: 1500 });
+        this.snackBar.open(d.message, 'Error', { duration: 1500 });
       }
     });
   }
